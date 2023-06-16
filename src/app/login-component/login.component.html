@@ -1,9 +1,9 @@
 <div style="justify-content: center; align-items: center; display: flex; height: 100vh; ">
   <div class="login-card">
-    <input class="login-input" type="text" [(ngModel)]="width" placeholder="Login" />
-    <input class= "login-input" type="text" [(ngModel)]="height" placeholder="Hasło" />
+    <input class="login-input" type="text" [(ngModel)]="email" placeholder="Login" />
+    <input class= "login-input" type="text" [(ngModel)]="password" placeholder="Hasło" />
     <div class="login-buttons">
-      <div class="login-button">
+      <div (click)="onLoginClick()" class="login-button">
         <div class="login-button-text">Zaloguj</div>
       </div>
       <div class="login-button">
