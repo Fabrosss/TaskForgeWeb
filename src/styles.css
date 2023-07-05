@@ -1,1 +1,24 @@
-/* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css?family=Montserrat:500,700");
+@import "bootstrap";
+body {
+  text-align: center;
+  font-size: 40px;
+  font-family: Montserrat, serif;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  background: #400D09;
+  color: var(--orange-light);
+}
+:root {
+  --orange-light: #F27405;
+  --orange: #F25C05;
+  --orange-dark: #A63F03;
+  --brown-light: #732002;
+  --brown-dark: #400D09;
+  --light-text: #eea44f;
+}
+.custom-button{
+  background-color: var(--orange-light);
+  color: #fff;
+}

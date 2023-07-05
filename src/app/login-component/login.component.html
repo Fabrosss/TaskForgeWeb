@@ -1,14 +1,12 @@
 <div style="justify-content: center; align-items: center; display: flex; height: 100vh; ">
   <div class="login-card">
-    <input class="login-input" type="text" [(ngModel)]="email" placeholder="Login" />
-    <input class= "login-input" type="text" [(ngModel)]="password" placeholder="Hasło" />
+    <div class="login-text">Email:</div>
+    <input class="login-input"  [(ngModel)]="email" placeholder="Login" />
+    <div class="login-text">Haslo:</div>
+    <input class= "login-input" type="password" [(ngModel)]="password" placeholder="Hasło" />
     <div class="login-buttons">
-      <div (click)="onLoginClick()" class="login-button">
-        <div class="login-button-text">Zaloguj</div>
-      </div>
-      <div class="login-button">
-        <div class="login-button-text">Nowe Konto</div>
-      </div>
+      <div (click)="onLoginClick()" class="btn custom-button">Zaloguj</div>
+      <div class="btn custom-button">Nowe Konto</div>
     </div>
   </div>
 </div>
