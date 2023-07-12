@@ -1,34 +1,35 @@
-import {Component,} from '@angular/core';
+import {Component, OnInit,} from '@angular/core';
 import {AuthService} from "../service/auth.service";
 import {Router} from "@angular/router";
 import {catchError, tap, throwError} from "rxjs";
 import {UserService} from "../service/user.service";
+import {SessionService} from "../service/session.service";
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent  {
+export class LoginComponent implements OnInit {
   email = "test@test.pl";
   password = "test";
 
   constructor(
     private authService: AuthService,
     private router: Router,
-    private userService: UserService,
+    private sessionService: SessionService,
               ) {}
 
-
+  ngOnInit(): void {
+    this.sessionService.clearSession();
+  }
   onLoginClick() {
     this.authService.login(this.email, this.password)
       .pipe(
         tap(response => {
-          console.log(response);
-          this.userService.setUser(response.email);
-          this.authService.setUserLogged();
+          this.sessionService.setData("userSession", response);
+          this.sessionService.setData("isLoggedIn", true);
           this.router.navigate(['/homepage']); // Przejście do HomepageComponent
-          this.authService.setUserLogged();
         }),
         catchError(error => {
           console.log('Błąd logowania:', error);
@@ -40,6 +41,8 @@ export class LoginComponent  {
         // Obsługa błędu, jeśli wystąpił
       });
   }
+
+
 
 
 }

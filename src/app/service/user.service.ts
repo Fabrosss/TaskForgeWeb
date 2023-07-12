@@ -1,20 +1,24 @@
 import {Injectable} from "@angular/core";
+import {User} from "../interface/user";
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService{
-  private userEmail: string;
+  private user: User = {
+    id: 0,
+    name: '',
+    surname: '',
+    email: ''
+  };
 
-  constructor() {
-    this.userEmail ="";
-  }
+  constructor() {}
   getUser(){
-    return this.userEmail;
+    return this.user;
   }
 
-  setUser(userEmail: string){
-    this.userEmail = userEmail;
+  setUser(user: User){
+    this.user = user;
   }
 }
 

@@ -1,1 +1,29 @@
 <app-header></app-header>
+<div class="container mt-4">
+  <div class="rounded border p-3">
+    <table class="table table-bordered table-dark">
+      <tbody class="custom-font">
+      <tr>
+        <td>Imię</td>
+        <td>{{user.name}}</td>
+      </tr>
+      <tr>
+        <td>Nazwisko</td>
+        <td>{{user.surname}}</td>
+      </tr>
+      <tr>
+        <td>Email</td>
+        <td>{{user.email}}</td>
+      </tr>
+      <tr>
+        <td colspan="2">Privilages</td>
+      </tr>
+      <ng-container *ngFor="let roles of user.roles">
+        <tr *ngFor="let privilages of roles.privileges">
+          <td colspan="2" style="text-align: left;">{{privilages?.name}}</td>
+        </tr>
+      </ng-container>
+      </tbody>
+    </table>
+  </div>
+</div>

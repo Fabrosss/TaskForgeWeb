@@ -9,11 +9,17 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {HeaderComponent} from './app-header/app-header.component';
 import {UserService} from "./service/user.service";
 import { InterceptorComponent } from './interceptor/interceptor/interceptor.component';
+import { PresentTasksComponent } from './tasks/present-tasks/present-tasks.component';
+import { FutureTasksComponent } from './tasks/future-tasks/future-tasks.component';
+import { PastTasksComponent } from './tasks/past-tasks/past-tasks.component';
 @NgModule({
   declarations: [
     AppComponent,
     routingComponents,
     HeaderComponent,
+    PresentTasksComponent,
+    FutureTasksComponent,
+    PastTasksComponent,
   ],
   imports: [
     BrowserModule,
