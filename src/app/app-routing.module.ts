@@ -5,6 +5,7 @@ import {LoginComponent} from "./login-component/login.component";
 import {PresentTasksComponent} from "./tasks/present-tasks/present-tasks.component";
 import {PastTasksComponent} from "./tasks/past-tasks/past-tasks.component";
 import {FutureTasksComponent} from "./tasks/future-tasks/future-tasks.component";
+import {EditTaskComponent} from "./tasks/edit-task/edit-task.component";
 
 const routes: Routes = [
   {path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -12,7 +13,8 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'present', component: PresentTasksComponent},
   {path: 'past', component: PastTasksComponent},
-  {path: 'future', component: FutureTasksComponent}
+  {path: 'future', component: FutureTasksComponent},
+  {path: 'edit/:id', component: EditTaskComponent},
 ];
 
 @NgModule({

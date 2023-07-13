@@ -1,0 +1,10 @@
+.custom-font{
+  font-size: 12px;
+}
+.main-td{
+  vertical-align: middle;
+}
+.custom-input{
+  background: var(--input-background-color);
+  color: #383B53;
+}

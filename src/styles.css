@@ -17,6 +17,7 @@ body {
   --brown-light: #732002;
   --brown-dark: #400D09;
   --light-text: #eea44f;
+  --input-background-color: #F4D1AE;
 }
 .custom-button{
   background-color: var(--orange-light);

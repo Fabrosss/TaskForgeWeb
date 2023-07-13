@@ -1,0 +1,11 @@
+.custom-font{
+  font-size: 12px;
+}
+.edit-button{
+  font-size: 12px;
+  color: white;
+  background: var(--orange-light);
+}
+.main-td{
+  vertical-align: middle;
+}
