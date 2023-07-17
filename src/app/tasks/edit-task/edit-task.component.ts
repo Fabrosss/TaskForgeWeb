@@ -4,6 +4,7 @@ import {Task} from "../../interface/task";
 import {ActivatedRoute} from "@angular/router";
 import {tap} from "rxjs";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-edit-task',
@@ -13,13 +14,13 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 export class EditTaskComponent implements OnInit {
   private taskId: number;
   task: Task;
-  taskForm: FormGroup = new FormGroup({
-  });
+
 
   constructor(
               private taskService: TaskService,
               private activatedRoute: ActivatedRoute,
               private fb: FormBuilder,
+              private modalService: NgbModal
               ){
     this.taskId = 0;
     this.task = {
@@ -31,12 +32,9 @@ export class EditTaskComponent implements OnInit {
       startingDate: undefined,
 
     }
+
   }
   ngOnInit(): void {
-    this.taskForm = this.fb.group({
-      title:['', [Validators.required]],
-      description:['', [Validators.required]],
-    });
     ({id: this.taskId} = this.activatedRoute.snapshot.params);
     this.taskService.getTaskById(this.taskId)
       .pipe(
@@ -53,5 +51,9 @@ export class EditTaskComponent implements OnInit {
 
   goBack() {
 
+  }
+
+  openModal() {
+    this.modalService.open('exampleModal');
   }
 }
