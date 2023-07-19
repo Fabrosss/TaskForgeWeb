@@ -2,7 +2,8 @@ import {Injectable} from "@angular/core";
 import {Observable} from "rxjs";
 import {SessionService} from "./session.service";
 import {User} from "../interface/user";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {Task} from "../interface/task";
 
 @Injectable()
 export class TaskService {
@@ -24,6 +25,13 @@ export class TaskService {
   getTasks() : Observable<any>{
     this.user = this.sessionService.getData("userSession");
     return this.http.get<any>(this.apiUrl + `/user/${this.user.id}`);
-
+  }
+  editTask(task: Task) : Observable<any>{
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    };
+    return this.http.put<Task>(this.apiUrl + `/edit`, task, httpOptions);
   }
 }

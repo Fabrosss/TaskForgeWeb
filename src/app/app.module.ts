@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import {AppRoutingModule, routingComponents} from './app-routing.module';
 import { AppComponent } from './app.component';
-import {LoginComponent} from "./login-component/login.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {AuthService} from "./service/auth.service";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
@@ -14,6 +13,7 @@ import { FutureTasksComponent } from './tasks/future-tasks/future-tasks.componen
 import { PastTasksComponent } from './tasks/past-tasks/past-tasks.component';
 import {TaskService} from "./service/task.service";
 import { EditTaskComponent } from './tasks/edit-task/edit-task.component';
+import { TaskListComponent } from './tasks/task-list/task-list.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,6 +23,7 @@ import { EditTaskComponent } from './tasks/edit-task/edit-task.component';
     FutureTasksComponent,
     PastTasksComponent,
     EditTaskComponent,
+    TaskListComponent,
   ],
   imports: [
     ReactiveFormsModule,

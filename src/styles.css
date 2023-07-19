@@ -23,3 +23,7 @@ body {
   background-color: var(--orange-light);
   color: #fff;
 }
+.custom-button-decline{
+  background-color: var(--input-background-color);
+  color: var(--brown-dark);
+}

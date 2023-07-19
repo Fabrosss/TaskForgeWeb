@@ -1,10 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {TaskService} from "../../service/task.service";
 import {Task} from "../../interface/task";
 import {ActivatedRoute} from "@angular/router";
 import {tap} from "rxjs";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-edit-task',
@@ -12,6 +10,7 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./edit-task.component.css']
 })
 export class EditTaskComponent implements OnInit {
+  @ViewChild('closebutton') closebutton: any;
   private taskId: number;
   task: Task;
 
@@ -19,8 +18,6 @@ export class EditTaskComponent implements OnInit {
   constructor(
               private taskService: TaskService,
               private activatedRoute: ActivatedRoute,
-              private fb: FormBuilder,
-              private modalService: NgbModal
               ){
     this.taskId = 0;
     this.task = {
@@ -54,6 +51,20 @@ export class EditTaskComponent implements OnInit {
   }
 
   openModal() {
-    this.modalService.open('exampleModal');
+    //this.modalService.open('exampleModal');
   }
+
+  editTask() {
+    console.log(this.task);
+    this.taskService.editTask(this.task).subscribe(
+      () => {
+        console.log(this.task.id + " updated");
+      },
+      (error) => {
+        console.log("Error" + error);
+      }
+    );
+    this.closebutton.nativeElement.click();
+  }
+
 }

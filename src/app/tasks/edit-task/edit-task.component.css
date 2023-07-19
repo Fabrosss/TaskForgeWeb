@@ -8,3 +8,6 @@
   background: var(--input-background-color);
   color: #383B53;
 }
+.edit-modal{
+  background: var(--brown-dark);
+}
