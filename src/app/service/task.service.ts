@@ -26,6 +26,10 @@ export class TaskService {
     this.user = this.sessionService.getData("userSession");
     return this.http.get<any>(this.apiUrl + `/user/${this.user.id}`);
   }
+  getTasksByUserStatus(status: string): Observable<any>{
+    this.user = this.sessionService.getData("userSession");
+    return this.http.get<any>(`${this.apiUrl}/user/${this.user.id}/${status}`)
+  }
   editTask(task: Task) : Observable<any>{
     const httpOptions = {
       headers: new HttpHeaders({

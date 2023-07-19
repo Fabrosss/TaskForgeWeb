@@ -1,31 +1,3 @@
 <app-header></app-header>
-<div class="container mt-4">
-  <table class="table table-bordered table-dark">
-    <tbody>
-      <tr class="custom-font">
-        <td class="col-1 main-td">Task Id</td>
-        <td class="col-2 main-td">Topic</td>
-        <td class="col-4 main-td">Description</td>
-        <td class="col-1 main-td">Hours</td>
-        <td class="col-2 main-td">Starting date</td>
-        <td class="col-2 main-td">Ending date</td>
-        <td class="col-1 main-td">
-          Edit
-        </td>
-      </tr>
-      <tr class="custom-font" *ngFor="let task of tasks">
-        <td class="col-1 main-td">{{task.id}}</td>
-        <td class="col-2">{{task.topic}}</td>
-        <td class="col-4">{{task.description}}</td>
-        <td class="col-1">{{task.hours}}</td>
-        <td class="col-2">{{task.startingDate}}</td>
-        <td class="col-2">{{task.endingDate}}</td>
-        <td class="col-1 main-td">
-          <button type="button" class="btn edit-button" routerLink="/edit/{{task.id}}">
-            Edit
-          </button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+<app-task-list [status] = taskStatus></app-task-list>
+

@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./past-tasks.component.css']
 })
 export class PastTasksComponent {
+  taskStatus: string;
+  constructor() {
+    this.taskStatus = "past";
+  }
 
 }

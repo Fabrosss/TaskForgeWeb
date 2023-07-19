@@ -8,20 +8,10 @@ import {tap} from "rxjs";
   templateUrl: './present-tasks.component.html',
   styleUrls: ['./present-tasks.component.css']
 })
-export class PresentTasksComponent implements OnInit {
-  tasks: Task[];
-  constructor(private taskService: TaskService) {
-    this.tasks = [];
+export class PresentTasksComponent {
+  taskStatus: string;
+  constructor() {
+    this.taskStatus = "present";
   }
-  ngOnInit(): void {
-    this.taskService.getTasks()
-      .pipe(
-        tap(response => {
-          this.tasks = response;
-        })
-      )
-      .subscribe();
-  }
-
 
 }

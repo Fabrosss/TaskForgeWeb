@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./future-tasks.component.css']
 })
 export class FutureTasksComponent {
+  taskStatus: string;
+  constructor() {
+    this.taskStatus = "future";
+  }
 
 }
