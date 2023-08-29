@@ -6,7 +6,7 @@
     <input class= "login-input" type="password" [(ngModel)]="password" placeholder="Hasło" />
     <div class="login-buttons">
       <div (click)="onLoginClick()" class="btn custom-button">Zaloguj</div>
-      <div class="btn custom-button">Nowe Konto</div>
+      <div (click)="onNewAccountClick()" class="btn custom-button">Nowe Konto</div>
     </div>
   </div>
 </div>

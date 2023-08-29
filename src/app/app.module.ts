@@ -7,13 +7,15 @@ import {AuthService} from "./service/auth.service";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {HeaderComponent} from './app-header/app-header.component';
 import {UserService} from "./service/user.service";
-import { InterceptorComponent } from './interceptor/interceptor/interceptor.component';
+import { AuthInterceptor } from './interceptor/interceptor/auth-interceptor.service';
 import { PresentTasksComponent } from './tasks/present-tasks/present-tasks.component';
 import { FutureTasksComponent } from './tasks/future-tasks/future-tasks.component';
 import { PastTasksComponent } from './tasks/past-tasks/past-tasks.component';
 import {TaskService} from "./service/task.service";
 import { EditTaskComponent } from './tasks/edit-task/edit-task.component';
 import { TaskListComponent } from './tasks/task-list/task-list.component';
+import { NewTaskComponent } from './tasks/new-task/new-task.component';
+import { AddUserComponent } from './user/add-user/add-user.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,6 +26,8 @@ import { TaskListComponent } from './tasks/task-list/task-list.component';
     PastTasksComponent,
     EditTaskComponent,
     TaskListComponent,
+    NewTaskComponent,
+    AddUserComponent,
   ],
   imports: [
     ReactiveFormsModule,
@@ -33,7 +37,7 @@ import { TaskListComponent } from './tasks/task-list/task-list.component';
     HttpClientModule
   ],
   providers:
-    [AuthService, UserService, TaskService, { provide: HTTP_INTERCEPTORS, useClass: InterceptorComponent, multi: true }]
+    [AuthService, UserService, TaskService, { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }]
   ,
   bootstrap: [AppComponent]
 })

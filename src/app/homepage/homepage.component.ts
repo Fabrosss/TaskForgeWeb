@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from "../service/auth.service";
-import {Router} from "@angular/router";
 import {UserService} from "../service/user.service";
 import {User} from "../interface/user";
 import {SessionService} from "../service/session.service";
+import {ServerService} from "../service/server.service";
 
 @Component({
   selector: 'app-homepage',
@@ -12,10 +12,12 @@ import {SessionService} from "../service/session.service";
 })
 export class HomepageComponent implements OnInit {
   public user: User;
+  public userAdmin: boolean = false;
     constructor(
       private userService: UserService,
       private sessionService: SessionService,
       private authService: AuthService,
+      private serverService: ServerService
                 ) {
       this.user = {
         id: 0,
@@ -25,8 +27,16 @@ export class HomepageComponent implements OnInit {
       };
     }
     ngOnInit() {
-       this.user = this.sessionService.getData("userSession");
-       console.log(this.user);
       this.authService.getIsLoggedIn();
+      this.userAdmin = this.userService.ifUserHasRole("ADMIN");
+      if(this.serverService.getServer()){
+        this.user = this.sessionService.getData("userSession");
+      }else{
+        this.user = this.sessionService.getData("userSession");
+        this.user = {
+          ...this.user,
+          roles: this.sessionService.getData("userRoles")
+        };
+      }
     }
 }

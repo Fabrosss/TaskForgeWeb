@@ -25,6 +25,10 @@
           <a href="past" class="nav-link fs-5" style="color: var(--orange-light)"> Zakończone Zadania
           </a>
         </li>
+        <li *ngIf="showNewTask" class="nav-item">
+          <a href="newTask" class="nav-link fs-5" style="color: var(--orange-light)"> Nowe Zadanie
+          </a>
+        </li>
       </ul>
       <button (click)=logout() type="button" class="btn custom-button ml-auto">Wyloguj</button>
     </div>

@@ -4,6 +4,8 @@ import {Router} from "@angular/router";
 import {catchError, tap, throwError} from "rxjs";
 import {UserService} from "../service/user.service";
 import {SessionService} from "../service/session.service";
+import {StorageService} from "../service/storage.service";
+import {ServerService} from "../service/server.service";
 
 @Component({
   selector: 'app-login',
@@ -18,18 +20,59 @@ export class LoginComponent implements OnInit {
     private authService: AuthService,
     private router: Router,
     private sessionService: SessionService,
+    private tokenService: StorageService,
+    private serverService: ServerService
               ) {}
 
   ngOnInit(): void {
     this.sessionService.clearSession();
   }
   onLoginClick() {
-    this.authService.login(this.email, this.password)
+    if(this.serverService.getServer()){
+      this.authService.login(this.email, this.password)
+        .pipe(
+          tap(response => {
+            this.sessionService.setData("userSession", response);
+            this.sessionService.setData("isLoggedIn", true);
+            this.router.navigate(['/homepage']); // Przejście do HomepageComponent
+          }),
+          catchError(error => {
+            console.log('Błąd logowania:', error);
+            return throwError(error);
+          })
+        )
+        .toPromise()
+        .catch(error => {
+          console.log('Błąd serwerowy: ', error);
+        });
+    }else {
+      this.authService.login(this.email, this.password)
+        .pipe(
+          tap(response => {
+            this.sessionService.setData("userSession", response.user);
+            this.sessionService.setData("userTasks", response.tasks);
+            this.sessionService.setData("userRoles", response.roles);
+            this.sessionService.setData("isLoggedIn", true);
+            this.sessionService.setData("token", response.token);
+            this.router.navigate(['/homepage']); // Przejście do HomepageComponent
+          }),
+          catchError(error => {
+            console.log('Błąd logowania:', error);
+            return throwError(error);
+          })
+        )
+        .toPromise()
+        .catch(error => {
+          console.log('Błąd serwerowy: ', error);
+        });
+
+    }
+  }
+  onNewAccountClick() {
+    this.authService.getCos()
       .pipe(
         tap(response => {
-          this.sessionService.setData("userSession", response);
-          this.sessionService.setData("isLoggedIn", true);
-          this.router.navigate(['/homepage']); // Przejście do HomepageComponent
+          console.log(response);
         }),
         catchError(error => {
           console.log('Błąd logowania:', error);
@@ -38,11 +81,7 @@ export class LoginComponent implements OnInit {
       )
       .toPromise()
       .catch(error => {
-        // Obsługa błędu, jeśli wystąpił
+        console.log(error);
       });
   }
-
-
-
-
 }

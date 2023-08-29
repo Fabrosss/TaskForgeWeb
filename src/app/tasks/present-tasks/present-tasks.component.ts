@@ -1,17 +1,18 @@
 import {Component, OnInit} from '@angular/core';
-import {TaskService} from "../../service/task.service";
-import {Task} from '../../interface/task';
-import {tap} from "rxjs";
+import {AuthService} from "../../service/auth.service";
 
 @Component({
   selector: 'app-present-tasks',
   templateUrl: './present-tasks.component.html',
   styleUrls: ['./present-tasks.component.css']
 })
-export class PresentTasksComponent {
+export class PresentTasksComponent implements OnInit {
   taskStatus: string;
-  constructor() {
+  constructor( private authService: AuthService) {
     this.taskStatus = "present";
   }
 
+  ngOnInit() {
+    this.authService.getIsLoggedIn();
+  }
 }

@@ -12,3 +12,17 @@
   background: var(--brown-dark);
 }
 
+.button-container{
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+}
+
+.confirm-button{
+  background-color: var(--orange-light);
+  color:white;
+}
+
+.validator-text{
+  font-size: 20px;
+}
